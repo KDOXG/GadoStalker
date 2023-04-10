@@ -1,9 +1,10 @@
-# GadoStalker
-Projeto para cadeira de Desenvolvimento de Software na UFPel ( Universidade Federal de Pelotas )
+# GadoStalker-NoSQL
 
-Desenvolvido usando front-end em Angular e back-end em Java EE (Jakarta EE).
+Projeto para cadeira de Banco de Dados Avançados ( Universidade Federal de Pelotas )
 
-Utilizando docker compose para o SGBD e o banco de dados MySQL8.
+Desenvolvido usando front-end em Angular e back-end em Java Spring.
+
+Utilizando banco de dados distribuído com o SGDB Apache Cassandra.
 
 # Docker
 ```docker-compose up -d``` na pasta do arquivo ```docker-compose```
