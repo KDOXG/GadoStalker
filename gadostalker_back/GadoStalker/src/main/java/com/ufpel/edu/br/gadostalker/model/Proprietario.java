@@ -13,7 +13,11 @@ import java.util.Objects;
  * @author gustavo
  */
 @Entity
-@Table(name = "proprietario")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 // define o DTYPE da classe Proprietario como PROPRIETARIO
 @DiscriminatorValue(value = Usuario.TipoUsuario.Tipo.PROPRIETARIO)
@@ -22,28 +26,6 @@ public class Proprietario extends Usuario implements Serializable {
     @OneToMany(mappedBy = "proprietario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="proprietarioid")
     private List<Fazenda> fazendas = new ArrayList<>();
-
-    public Proprietario() {
-    }
-    
-    public Proprietario(UsuarioDTO usuarioDTO) {
-        super(usuarioDTO);
-    }
-
-    public Proprietario(String nome, String telefone, String senha,
-                        PerguntaSegurancaEnum pergunta, String resposta, String cpf,
-                        String email, List<Fazenda> fazendas) {
-        super(nome, telefone, senha, pergunta, resposta, cpf, email, Usuario.TipoUsuario.PROPRIETARIO);
-        this.fazendas = fazendas;
-    }
-
-    public List<Fazenda> getFazendas() {
-        return fazendas;
-    }
-
-    public void setFazendas(List<Fazenda> fazendas) {
-        this.fazendas = fazendas;
-    }
 
     public Proprietario addFazenda(Fazenda fazenda) {
         fazendas.add(fazenda);

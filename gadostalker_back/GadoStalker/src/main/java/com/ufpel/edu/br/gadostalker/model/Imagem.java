@@ -2,6 +2,7 @@ package com.ufpel.edu.br.gadostalker.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,6 +19,11 @@ import java.util.logging.Logger;
  */
 @Entity
 @Table(name = "imagem")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @SequenceGenerator(name = "seqImagem", sequenceName = "SEQIMAGEM", allocationSize = 1)
 public class Imagem implements Serializable {
 
@@ -55,9 +61,6 @@ public class Imagem implements Serializable {
     @Transient
     private byte[] encodedContent;
 
-    public Imagem() {
-    }
-
     @PostLoad
     private void encodeAfterFetch() {
         byte[] header = ("data:image/" + fileExtension.getFileExtension() + ";base64,").getBytes();
@@ -71,7 +74,7 @@ public class Imagem implements Serializable {
         encodedContent = outputStream.toByteArray();
     }
 
-    public Imagem(String fileName, byte[] content) {
+    public Imagem(@NotNull String fileName, byte[] content) {
         String[] file = fileName.split("\\.");
         this.fileName = file[0];
         switch (file[1]) {
@@ -96,34 +99,6 @@ public class Imagem implements Serializable {
 
     public byte[] decodeBase64() {
         return Base64.getDecoder().decode(content);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public FileFormat getFileExtension() {
-        return fileExtension;
-    }
-
-    public void setFileExtension(FileFormat fileExtension) {
-        this.fileExtension = fileExtension;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
     }
 
     @Override

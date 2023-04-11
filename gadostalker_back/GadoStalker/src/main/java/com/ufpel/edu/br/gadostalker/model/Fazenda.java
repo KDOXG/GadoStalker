@@ -13,8 +13,12 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "fazenda")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @SequenceGenerator(name = "seqFazenda", sequenceName = "SEQFAZENDA", allocationSize = 1)
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Fazenda.getAllProdutos", query = "SELECT p FROM Fazenda f INNER JOIN f.produtos p WHERE f.SNCR = :sncr"),
     @NamedQuery(name = "Fazenda.getAllProdutosByTipo", query = "SELECT p FROM Fazenda f INNER JOIN f.produtos p where f.SNCR = :sncr and p.tipo = :tipo")
@@ -46,77 +50,6 @@ public class Fazenda implements Serializable {
     @OneToMany(mappedBy = "fazenda", cascade={CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY)
     @JoinColumn(name="fazendaid")
     private List<Funcionario> funcionarios;
-
-    public Fazenda() {
-    }
-    
-    public Fazenda(FazendaDTO fazendaDTO) {
-        this.isZapZap = fazendaDTO.isZapZap;
-        this.SNCR = fazendaDTO.SNCR;
-        this.nome = fazendaDTO.nome;
-        this.email = fazendaDTO.email;
-        this.telefone = fazendaDTO.telefone;
-    }
-
-    public Fazenda(String SNCR, String nome, String email, String telefone, Boolean isZapZap) {
-        this.SNCR = SNCR;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.isZapZap = isZapZap;
-    }
-
-    public String getSNCR() {
-        return SNCR;
-    }
-
-    public void setSNCR(String SNCR) {
-        this.SNCR = SNCR;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public Proprietario getProprietario() {
-        return proprietario;
-    }
-
-    public void setProprietario(Proprietario proprietario) {
-        this.proprietario = proprietario;
-    }
-    
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public Boolean isZapZap() {
-        return isZapZap;
-    }
-
-    public void setIsZapZap(Boolean isZapZap) {
-        this.isZapZap = isZapZap;
-    }
     
     public void addProduto(Produto produto) {
         produtos.add(produto);
@@ -124,14 +57,6 @@ public class Fazenda implements Serializable {
     
     public void removeProduto(Produto produto) {
         produtos.remove(produto);
-    }
-
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
-    }
-
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
     }
     
     public void addFuncionario(Funcionario funcionario) {
@@ -161,14 +86,11 @@ public class Fazenda implements Serializable {
             return false;
         }
         final Fazenda other = (Fazenda) obj;
-        if (!Objects.equals(this.SNCR, other.SNCR)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.SNCR, other.SNCR);
     }
 
     @Override
     public String toString() {
-        return "com.ufpel.cs.gadostalker.rest.entity.Fazenda[ SNCR=" + SNCR + " ]";
+        return "com.ufpel.edu.br.gadostalker.rest.entity.Fazenda[ SNCR=" + SNCR + " ]";
     }
 }

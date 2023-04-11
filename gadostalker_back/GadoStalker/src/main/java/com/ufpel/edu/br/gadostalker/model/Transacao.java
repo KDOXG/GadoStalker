@@ -14,6 +14,11 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "transacao")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @SequenceGenerator(name = "seqTransacao", sequenceName = "SEQTRANSACAO", allocationSize = 1)
 public class Transacao implements Serializable {
 
@@ -35,56 +40,6 @@ public class Transacao implements Serializable {
     @Column
     private int quantidade;
 
-    public Transacao() {
-    }
-
-    public Transacao(Date data, BigDecimal preco, int quantidade) {
-        this.dataTransacao = data;
-        this.preco = preco;
-        this.quantidade = quantidade;
-    }
-    
-    public Transacao(TransacaoDTO dto) {
-        this.preco = dto.preco;
-        this.quantidade = dto.quantidade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Date getDataTransacao() {
-        return dataTransacao;
-    }
-
-    public void setDataTransacao(Date dataTransacao) {
-        this.dataTransacao = dataTransacao;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public Anuncio getAnuncio() {
-        return anuncio;
-    }
-
-    public void setAnuncio(Anuncio anuncio) {
-        this.anuncio = anuncio;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -104,15 +59,12 @@ public class Transacao implements Serializable {
             return false;
         }
         final Transacao other = (Transacao) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
     
     @Override
     public String toString() {
-        return "com.ufpel.cs.gadostalker.rest.entity.Transacao[ id=" + id + " ]";
+        return "com.ufpel.edu.br.gadostalker.rest.entity.Transacao[ id=" + id + " ]";
     }
     
 }

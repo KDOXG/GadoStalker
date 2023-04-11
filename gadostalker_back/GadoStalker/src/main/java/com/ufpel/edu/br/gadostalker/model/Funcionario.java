@@ -11,7 +11,11 @@ import java.util.Objects;
  * @author gustavo
  */
 @Entity
-@Table(name = "funcionario")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 // define o DTYPE da classe Funcionario como FUNCIONARIO
 @DiscriminatorValue(value = Usuario.TipoUsuario.Tipo.FUNCIONARIO)
@@ -20,22 +24,6 @@ public class Funcionario extends Usuario implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FAZENDA_SNCR", nullable = true, referencedColumnName = "SNCR")
     private Fazenda fazenda;
-
-    public Funcionario() {
-    }
-    
-    public Funcionario(UsuarioDTO usuarioDTO, Fazenda fazenda) {
-        super(usuarioDTO);
-        this.fazenda = fazenda;
-    }
-
-    public Fazenda getFazenda() {
-        return fazenda;
-    }
-
-    public void setFazenda(Fazenda fazenda) {
-        this.fazenda = fazenda;
-    }
 
     @Override
     public int hashCode() {

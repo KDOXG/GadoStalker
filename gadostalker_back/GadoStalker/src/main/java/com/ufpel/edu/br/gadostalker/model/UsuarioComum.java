@@ -1,6 +1,7 @@
 package com.ufpel.edu.br.gadostalker.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.io.Serializable;
@@ -11,18 +12,15 @@ import java.util.Objects;
  * @author thomazio
  */
 @Entity
-@Table(name = "usuario_comum")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 // define o DTYPE da classe UsuarioComum como USUARIO_COMUM
 @DiscriminatorValue(value = Usuario.TipoUsuario.Tipo.USUARIO_COMUM)
 public class UsuarioComum extends Usuario implements Serializable {
-
-    public UsuarioComum() {
-    }
-
-    public UsuarioComum(UsuarioDTO usuarioDTO) {
-        super(usuarioDTO);
-    }
 
     @Override
     public int hashCode() {

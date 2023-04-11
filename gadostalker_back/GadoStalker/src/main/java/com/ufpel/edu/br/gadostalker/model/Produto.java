@@ -13,6 +13,11 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "produto")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @SequenceGenerator(name = "seqProduto", sequenceName = "SEQPRODUTO", allocationSize = 1)
 @NamedQuery(name = "Produto.getAllProdutosByTipo", query = "SELECT p FROM Produto p WHERE p.tipo = :tipo")
 public class Produto implements Serializable {
@@ -36,7 +41,7 @@ public class Produto implements Serializable {
         
         private final String tipo;
 
-        private TipoProdutoEnum(String tipo) {
+        TipoProdutoEnum(String tipo) {
             this.tipo = tipo;
         }
 
@@ -63,58 +68,6 @@ public class Produto implements Serializable {
     @Column(precision = 10, scale = 2)
     private BigDecimal quantidade;
 
-    public Produto() {
-    }
-
-    public Produto(String nome, TipoProdutoEnum tipo, Fazenda fazenda, BigDecimal quantidade) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.fazenda = fazenda;
-        this.quantidade = quantidade;
-    }
-
-    public Produto(ProdutoDTO produtoDTO) {
-        this.nome = produtoDTO.nome;
-        this.tipo = produtoDTO.tipo;
-        this.quantidade = produtoDTO.quantidade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public TipoProdutoEnum getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoProdutoEnum tipo) {
-        this.tipo = tipo;
-    }
-
-    public Fazenda getFazenda() {
-        return fazenda;
-    }
-
-    public void setFazenda(Fazenda fazenda) {
-        this.fazenda = fazenda;
-    }
-
-    public BigDecimal getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(BigDecimal quantidade) {
-        this.quantidade = quantidade;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -134,10 +87,7 @@ public class Produto implements Serializable {
             return false;
         }
         final Produto other = (Produto) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
