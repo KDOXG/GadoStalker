@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
         public String getPergunta() {
             return pergunta;
         }
-    };
+    }
 
     /**
      * pra conseguir fazer a juncao da tabela DTYPE com o enum de tipo é necessario criar constantes,
