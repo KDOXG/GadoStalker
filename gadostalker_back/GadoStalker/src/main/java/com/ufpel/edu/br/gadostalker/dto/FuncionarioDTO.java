@@ -1,10 +1,11 @@
 package com.ufpel.edu.br.gadostalker.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class FuncionarioDTO extends UsuarioDTO {
 
     public FazendaDTO fazenda;

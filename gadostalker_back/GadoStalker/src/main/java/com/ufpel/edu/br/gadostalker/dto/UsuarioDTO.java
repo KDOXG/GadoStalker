@@ -1,14 +1,17 @@
 package com.ufpel.edu.br.gadostalker.dto;
 
 import com.ufpel.edu.br.gadostalker.model.Usuario;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+
+@Setter
+@Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioDTO {
 
     public String cpf;

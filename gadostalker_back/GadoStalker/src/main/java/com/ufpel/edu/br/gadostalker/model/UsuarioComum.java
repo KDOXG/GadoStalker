@@ -16,8 +16,6 @@ import java.util.Objects;
 @Setter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
-
 // define o DTYPE da classe UsuarioComum como USUARIO_COMUM
 @DiscriminatorValue(value = Usuario.TipoUsuario.Tipo.USUARIO_COMUM)
 public class UsuarioComum extends Usuario implements Serializable {
