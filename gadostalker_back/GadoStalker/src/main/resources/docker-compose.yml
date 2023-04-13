@@ -1,0 +1,41 @@
+version: '3'
+
+networks:
+  pgnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.2.0.0/16
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: gadostalkerdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      pgnet:
+        ipv4_address: 10.2.0.3
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      pgnet:
+        ipv4_address: 10.2.0.4
+
+volumes:
+  pgdata:
