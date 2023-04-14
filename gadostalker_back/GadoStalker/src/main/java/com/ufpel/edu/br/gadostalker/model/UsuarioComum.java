@@ -3,6 +3,7 @@ package com.ufpel.edu.br.gadostalker.model;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 // define o DTYPE da classe UsuarioComum como USUARIO_COMUM
 @DiscriminatorValue(value = Usuario.TipoUsuario.Tipo.USUARIO_COMUM)
