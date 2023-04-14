@@ -1,7 +1,9 @@
 package com.ufpel.edu.br.gadostalker.controller;
 
 import com.ufpel.edu.br.gadostalker.dto.UsuarioDTO;
+import com.ufpel.edu.br.gadostalker.mapper.UsuarioMapper;
 import com.ufpel.edu.br.gadostalker.model.Usuario;
+import com.ufpel.edu.br.gadostalker.model.UsuarioComum;
 import com.ufpel.edu.br.gadostalker.service.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,11 +27,12 @@ public class UsuarioController {
 
         var login = usuarioService.login(usuarioDTO.email, usuarioDTO.senha);
 
-        if (login.isPresent()) {
+        if (login.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+        var usuarioLogado = UsuarioMapper.toDTO((UsuarioComum)login.get());
 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(usuarioLogado, HttpStatus.OK);
     }
 }
