@@ -10,7 +10,7 @@ export class ApiService {
 
   cadastroUsuarioComum(body: any) {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/usuario/cadastro/uc';
+      'http://localhost:8080/usuario/cadastro/uc';
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -21,7 +21,7 @@ export class ApiService {
 
   cadastroProprietario(body: any) {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/usuario/cadastro/prop';
+      'http://localhost:8080/usuario/cadastro/prop';
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -32,7 +32,7 @@ export class ApiService {
 
   cadastroFuncionario(body: any) {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/usuario/cadastro/func';
+      'http://localhost:8080/usuario/cadastro/func';
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -42,7 +42,7 @@ export class ApiService {
   }
 
   login(body: any) {
-    let url = 'http://localhost:8080/GadoStalker-rest/resources/usuario/login';
+    let url = 'http://localhost:8080/usuario/login';
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -53,7 +53,7 @@ export class ApiService {
 
   recuperarSenha(body: any) {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/usuario/recuperarSenha';
+      'http://localhost:8080/usuario/recuperarSenha';
     return this.http.put(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -64,22 +64,22 @@ export class ApiService {
 
   getAllTiposProdutos() {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/produto/getAllTiposProdutos';
+      'http://localhost:8080/produto/getAllTiposProdutos';
     return this.http.get(url);
   }
 
   getAllFazendasByProprietarioCpf(cpf: String) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/getAllFazendasByProprietarioCpf/${cpf}`;
+    let url = `http://localhost:8080/usuario/getAllFazendasByProprietarioCpf/${cpf}`;
     return this.http.get(url);
   }
 
   getAllProdutosByFazendaSNCR(sncr: String) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/produto/getAllProdutosByFazendaSNCR/${sncr}`;
+    let url = `http://localhost:8080/produto/getAllProdutosByFazendaSNCR/${sncr}`;
     return this.http.get(url);
   }
 
   getAllProdutosByCPF(cpf: String) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/produto/getAllProdutosByProprietarioCpf/${cpf}`;
+    let url = `http://localhost:8080/produto/getAllProdutosByProprietarioCpf/${cpf}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -89,13 +89,13 @@ export class ApiService {
   }
 
   getAllProdutosByTypeAndSncr(type: String, sncr: String) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/produto/getAllProdutosByTypeAndSncr/${type}/${sncr}`;
+    let url = `http://localhost:8080/produto/getAllProdutosByTypeAndSncr/${type}/${sncr}`;
     return this.http.get(url);
   }
 
   adicionarProduto(body: any) {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/produto/adicionar';
+      'http://localhost:8080/produto/adicionar';
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -105,7 +105,7 @@ export class ApiService {
   }
 
   excluirProdutoById(id: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/produto/remover/${id}`;
+    let url = `http://localhost:8080/produto/remover/${id}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -115,7 +115,7 @@ export class ApiService {
   }
 
   editarProdutoById(id: any, body: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/produto/editar/${id}`;
+    let url = `http://localhost:8080/produto/editar/${id}`;
     return this.http.put(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -125,7 +125,7 @@ export class ApiService {
   }
 
   consultarProdutoById(id: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/produto/consultar/${id}`;
+    let url = `http://localhost:8080/produto/consultar/${id}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -135,7 +135,7 @@ export class ApiService {
   }
 
   validaSncr(sncr: any) {
-    let url = ` http://localhost:8080/GadoStalker-rest/resources/usuario/cadastro/validaSncr/${sncr}`;
+    let url = ` http://localhost:8080/usuario/cadastro/validaSncr/${sncr}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -145,7 +145,7 @@ export class ApiService {
   }
 
   editarPerfilByCpf(cpf: any, body: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/cadastro/editar/${cpf}`;
+    let url = `http://localhost:8080/usuario/cadastro/editar/${cpf}`;
     return this.http.put(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -155,7 +155,7 @@ export class ApiService {
   }
 
   adicionarFazenda(cpf: any, body: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/fazenda/cadastro/${cpf}`;
+    let url = `http://localhost:8080/fazenda/cadastro/${cpf}`;
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -165,7 +165,7 @@ export class ApiService {
   }
 
   deletarFazenda(sncr: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/fazenda/remover/${sncr}`;
+    let url = `http://localhost:8080/fazenda/remover/${sncr}`;
     return this.http.delete(url).pipe(
       take(1),
       catchError((error) => {
@@ -176,12 +176,12 @@ export class ApiService {
 
   getQuestions() {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/usuario/getAllPerguntas';
+      'http://localhost:8080/usuario/getAllPerguntas';
     return this.http.get(url);
   }
 
   getListaFuncionariosByCpf(cpf: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/getListaFuncionariosByProprietarioCpf/${cpf}`;
+    let url = `http://localhost:8080/usuario/getListaFuncionariosByProprietarioCpf/${cpf}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -192,7 +192,7 @@ export class ApiService {
 
   trocaFuncionarioFazenda(body: any) {
     let url =
-      'http://localhost:8080/GadoStalker-rest/resources/usuario/funcionario/trocaFazenda';
+      'http://localhost:8080/usuario/funcionario/trocaFazenda';
     return this.http.put(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -202,7 +202,7 @@ export class ApiService {
   }
 
   excluirUsuarioByCpf(cpf: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/remover/${cpf}`;
+    let url = `http://localhost:8080/usuario/remover/${cpf}`;
     return this.http.delete(url).pipe(
       take(1),
       catchError((error) => {
@@ -212,7 +212,7 @@ export class ApiService {
   }
 
   editarFazendaBySncr(sncr: any, body: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/fazenda/modificar/${sncr}`;
+    let url = `http://localhost:8080/fazenda/modificar/${sncr}`;
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -222,7 +222,7 @@ export class ApiService {
   }
 
   adicionarAnuncio(body: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/cadastrar`;
+    let url = `http://localhost:8080/anuncio/cadastrar`;
     return this.http.post(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -232,7 +232,7 @@ export class ApiService {
   }
 
   uploadFile(image: any, fileName: any) {
-    let url = 'http://localhost:8080/GadoStalker-rest/resources/upload/create';
+    let url = 'http://localhost:8080/upload/create';
     const formData: FormData = new FormData();
     formData.append('imagem', image);
     formData.append('fileName', fileName);
@@ -245,7 +245,7 @@ export class ApiService {
   }
 
   getImagemById(id: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/upload/get/${id}`;
+    let url = `http://localhost:8080/upload/get/${id}`;
     const headers = new HttpHeaders().set(
       'Content-Type',
       'text/plain; charset=utf-8'
@@ -260,7 +260,7 @@ export class ApiService {
   }
 
   getAllAnunciosByCPF(cpf: String) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/getAllAnunciosByProprietarioCPF/${cpf}`;
+    let url = `http://localhost:8080/anuncio/getAllAnunciosByProprietarioCPF/${cpf}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -270,7 +270,7 @@ export class ApiService {
   }
 
   getInfosDashboard(cpfProprietario: String) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/proprietario/getInfosDashboard/${cpfProprietario}`;
+    let url = `http://localhost:8080/usuario/proprietario/getInfosDashboard/${cpfProprietario}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -280,7 +280,7 @@ export class ApiService {
   }
 
   setImagemToAnuncio(idAnuncio: any, Idimagem: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/setImagemToAnuncio/${idAnuncio}/${Idimagem}`;
+    let url = `http://localhost:8080/anuncio/setImagemToAnuncio/${idAnuncio}/${Idimagem}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -290,7 +290,7 @@ export class ApiService {
   }
 
   editarAnuncioById(id: any, body: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/editar/${id}`;
+    let url = `http://localhost:8080/anuncio/editar/${id}`;
     return this.http.put(url, body).pipe(
       take(1),
       catchError((error) => {
@@ -300,7 +300,7 @@ export class ApiService {
   }
 
   deletarAnuncioById(id: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/deleta/${id}`;
+    let url = `http://localhost:8080/anuncio/deleta/${id}`;
     return this.http.delete(url).pipe(
       take(1),
       catchError((error) => {
@@ -310,7 +310,7 @@ export class ApiService {
   }
 
   geraGraficoPizza(cpfProprietario: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/proprietario/geraGraficoPizza/${cpfProprietario}`;
+    let url = `http://localhost:8080/usuario/proprietario/geraGraficoPizza/${cpfProprietario}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -320,7 +320,7 @@ export class ApiService {
   }
 
   numVendasUltimosMeses(cpfProprietario: any, numeroMes: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/transacao/numVendasUltimosMeses/${numeroMes}/${cpfProprietario}`;
+    let url = `http://localhost:8080/transacao/numVendasUltimosMeses/${numeroMes}/${cpfProprietario}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -330,7 +330,7 @@ export class ApiService {
   }
 
   lucroVendasUltimosMeses(cpfProprietario: any, numeroMes: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/transacao/lucroVendasUltimosMeses/${numeroMes}/${cpfProprietario}`;
+    let url = `http://localhost:8080/transacao/lucroVendasUltimosMeses/${numeroMes}/${cpfProprietario}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -340,7 +340,7 @@ export class ApiService {
   }
 
   lucroGeralByCpf(cpfProprietario: any) {
-    let url = `http://localhost:8080/GadoStalker-rest/resources/transacao/lucroGeralByCpf/${cpfProprietario}`;
+    let url = `http://localhost:8080/transacao/lucroGeralByCpf/${cpfProprietario}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -350,28 +350,28 @@ export class ApiService {
   }
 
   encerrarAnuncioById(id: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/encerra/${id}`;
+    let url = `http://localhost:8080/anuncio/encerra/${id}`;
     return this.http.put(url, {}).pipe(take(1), catchError(error => {
       return of(0);
     }));
   }
 
   reabrirAnuncioById(id: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/reabre/${id}`;
+    let url = `http://localhost:8080/anuncio/reabre/${id}`;
     return this.http.put(url, {}).pipe(take(1), catchError(error => {
       return of(0);
     }));
   }
 
   registrarTransacao(id: any, body: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/transacao/registrar/${id}`;
+    let url = `http://localhost:8080/transacao/registrar/${id}`;
     return this.http.post(url, body).pipe(take(1), catchError(error => {
       return of(0);
     }));
   }
 
   getAnuncios(tipo: any, page?: any, order?: any, quantidade?: any, search?: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/pesquisa?tipo=${tipo}&page=${page}&order=${order}&quantity=${quantidade}&search=${search?search:''}`;
+    let url = `http://localhost:8080/anuncio/pesquisa?tipo=${tipo}&page=${page}&order=${order}&quantity=${quantidade}&search=${search?search:''}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -381,7 +381,7 @@ export class ApiService {
   }
 
   getAnunciosBySearchText(page?: any, order?: any, quantidade?: any, search?: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/pesquisa?page=${page}&order=${order}&quantity=${quantidade}&search=${search}`;
+    let url = `http://localhost:8080/anuncio/pesquisa?page=${page}&order=${order}&quantity=${quantidade}&search=${search}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -392,7 +392,7 @@ export class ApiService {
 
   
   getAnuncioById(id: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/anuncio/getAnuncioID/${id}`;
+    let url = `http://localhost:8080/anuncio/getAnuncioID/${id}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -402,7 +402,7 @@ export class ApiService {
   }
 
   getFazendaBySncr(sncr: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/fazenda/getFazendaBySncr/${sncr}`;
+    let url = `http://localhost:8080/fazenda/getFazendaBySncr/${sncr}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
@@ -412,7 +412,7 @@ export class ApiService {
   }
 
   getJsonRelatorio(cpf: any){
-    let url = `http://localhost:8080/GadoStalker-rest/resources/usuario/proprietario/geraRelatorioXls/${cpf}`;
+    let url = `http://localhost:8080/usuario/proprietario/geraRelatorioXls/${cpf}`;
     return this.http.get(url).pipe(
       take(1),
       catchError((error) => {
