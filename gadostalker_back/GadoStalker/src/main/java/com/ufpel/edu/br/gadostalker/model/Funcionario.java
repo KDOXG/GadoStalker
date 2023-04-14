@@ -22,7 +22,7 @@ import java.util.Objects;
 public class Funcionario extends Usuario implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FAZENDA_SNCR", nullable = true, referencedColumnName = "SNCR")
+    @JoinColumn(name = "fazenda_sncr", referencedColumnName = "SNCR")
     private Fazenda fazenda;
 
     @Override

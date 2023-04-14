@@ -41,14 +41,13 @@ public class Fazenda implements Serializable {
     private Boolean isZapZap;
     
     @OneToMany(mappedBy = "fazenda", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "FAZENDA_SNCR")
     private List<Produto> produtos;
     
     @ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
+    @JoinColumn(name = "proprietarioid")
     private Proprietario proprietario;
     
     @OneToMany(mappedBy = "fazenda", cascade={CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY)
-    @JoinColumn(name="fazendaid")
     private List<Funcionario> funcionarios;
     
     public void addProduto(Produto produto) {

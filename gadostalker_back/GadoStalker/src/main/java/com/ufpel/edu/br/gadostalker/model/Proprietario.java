@@ -24,7 +24,6 @@ import java.util.Objects;
 public class Proprietario extends Usuario implements Serializable {
     
     @OneToMany(mappedBy = "proprietario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name="proprietarioid")
     private List<Fazenda> fazendas = new ArrayList<>();
 
     public Proprietario addFazenda(Fazenda fazenda) {
