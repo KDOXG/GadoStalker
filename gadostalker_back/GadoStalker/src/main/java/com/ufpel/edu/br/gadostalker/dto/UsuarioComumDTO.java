@@ -7,8 +7,5 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class FuncionarioDTO extends UsuarioDTO {
-
-    public FazendaDTO fazenda;
+public class UsuarioComumDTO extends UsuarioDTO {
 }

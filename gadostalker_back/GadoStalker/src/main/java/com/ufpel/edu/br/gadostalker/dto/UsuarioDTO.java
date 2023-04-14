@@ -2,6 +2,7 @@ package com.ufpel.edu.br.gadostalker.dto;
 
 import com.ufpel.edu.br.gadostalker.model.Usuario;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Setter
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
@@ -27,25 +28,8 @@ public class UsuarioDTO {
     public Usuario.PerguntaSegurancaEnum pergunta;
 
     public String resposta;
-    public List<FazendaDTO> fazendas;
 
     public Usuario.TipoUsuario tipoUsuario;
 
     public String cpfPatrao;
-
-    
-    public UsuarioDTO addFazendaDTO(FazendaDTO fazenda) {
-        if (fazendas == null) {
-            fazendas = new ArrayList<>();
-        }
-        fazendas.add(fazenda);
-        
-        return this;
-    }
-    
-    public UsuarioDTO removeFazendaDTO(FazendaDTO fazenda) {
-        fazendas.remove(fazenda);
-        
-        return this;
-    }
 }
