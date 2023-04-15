@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FazendaService {
     List<Fazenda> findFazendasByProprietario(Proprietario proprietario);
+    Boolean validaFazenda(String sncr);
 }

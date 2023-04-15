@@ -58,4 +58,11 @@ public class UsuarioController {
                 .map(fazenda -> fazendaMapper.toDTO(fazenda))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping("cadastro/validaSncr/{sncr}")
+    public Boolean fazendaIsValida(@PathVariable("sncr") String sncr) {
+        return fazendaService.validaFazenda(sncr);
+    }
 }
