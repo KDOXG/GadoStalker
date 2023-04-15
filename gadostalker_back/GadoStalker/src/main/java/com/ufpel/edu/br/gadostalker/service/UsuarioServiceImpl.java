@@ -1,6 +1,9 @@
 package com.ufpel.edu.br.gadostalker.service;
 
+import com.ufpel.edu.br.gadostalker.model.Funcionario;
+import com.ufpel.edu.br.gadostalker.model.Proprietario;
 import com.ufpel.edu.br.gadostalker.model.Usuario;
+import com.ufpel.edu.br.gadostalker.model.UsuarioComum;
 import com.ufpel.edu.br.gadostalker.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +25,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Optional<Usuario> findByCPF(String cpf) {
         return usuarioRepository.findByCpf(cpf);
+    }
+
+    @Override
+    public Boolean newUsuario(Usuario usuario) {
+        if (usuario == null) {
+            return false;
+        } else {
+            usuarioRepository.save(usuario);
+            return true;
+        }
     }
 }
