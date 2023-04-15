@@ -18,4 +18,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Optional<Usuario> login(String email, String senha) {
         return usuarioRepository.findByEmailAndSenha(email, senha);
     }
+
+    @Override
+    public Optional<Usuario> findByCPF(String cpf) {
+        return usuarioRepository.findByCpf(cpf);
+    }
 }
