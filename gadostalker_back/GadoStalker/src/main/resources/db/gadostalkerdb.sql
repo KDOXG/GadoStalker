@@ -46,8 +46,8 @@ INSERT INTO usuario (CPF, TIPO_USUARIO, EMAIL, NOME, PERGUNTA, RESPOSTA, SENHA, 
 
 -- compradores
 INSERT INTO usuario (CPF, TIPO_USUARIO, EMAIL, NOME, PERGUNTA, RESPOSTA, SENHA, TELEFONE, FAZENDA_SNCR) VALUES
-('12312312365', 'USUARIO_COMUM', 'joaocomprador@gmail.com.br', 	'João Comprador', 0,	'Lisane', 'senha123', '53123456789',	NULL),
-('35768683054', 'USUARIO_COMUM', 'mariacompradora@gmail.com.br',	'Maria Compradora', 0, 	'Lisane', 'senha123',	'53123456790',	NULL);
+('12312312365', 'USUARIO_COMUM', 'joaocomprador@gmail.com', 	'João Comprador', 0,	'Lisane', 'senha123', '53123456789',	NULL),
+('35768683054', 'USUARIO_COMUM', 'mariacompradora@gmail.com',	'Maria Compradora', 0, 	'Lisane', 'senha123',	'53123456790',	NULL);
 
 INSERT INTO produto (ID, NOME, QUANTIDADE, TIPO, FAZENDA_SNCR) VALUES
 -- Fazenda do Vale
