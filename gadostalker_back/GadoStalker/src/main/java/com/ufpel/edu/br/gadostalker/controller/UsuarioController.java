@@ -4,6 +4,7 @@ import com.ufpel.edu.br.gadostalker.dto.*;
 import com.ufpel.edu.br.gadostalker.mapper.FazendaMapper;
 import com.ufpel.edu.br.gadostalker.mapper.UsuarioMapper;
 import com.ufpel.edu.br.gadostalker.model.Fazenda;
+import com.ufpel.edu.br.gadostalker.model.Funcionario;
 import com.ufpel.edu.br.gadostalker.model.Proprietario;
 import com.ufpel.edu.br.gadostalker.model.UsuarioComum;
 import com.ufpel.edu.br.gadostalker.service.FazendaServiceImpl;
@@ -44,9 +45,27 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        var usuarioLogado = usuarioMapper.toDTO((UsuarioComum)login.get());
-
-        return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
+        if (login.get() instanceof UsuarioComum) {
+            var usuarioLogado = usuarioMapper.toDTO((UsuarioComum)login.get());
+            usuarioLogado.senha = null;
+            usuarioLogado.pergunta = null;
+            usuarioLogado.resposta = null;
+            return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
+        } else if (login.get() instanceof Funcionario) {
+            var usuarioLogado = usuarioMapper.toDTO((Funcionario)login.get());
+            usuarioLogado.cpfPatrao = ((Funcionario) login.get()).getFazenda().getProprietario().getCpf();
+            usuarioLogado.senha = null;
+            usuarioLogado.pergunta = null;
+            usuarioLogado.resposta = null;
+            return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
+        } else if (login.get() instanceof Proprietario) {
+            var usuarioLogado = usuarioMapper.toDTO((Proprietario)login.get());
+            usuarioLogado.senha = null;
+            usuarioLogado.pergunta = null;
+            usuarioLogado.resposta = null;
+            return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping

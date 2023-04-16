@@ -11,4 +11,5 @@ import lombok.experimental.SuperBuilder;
 public class FuncionarioDTO extends UsuarioDTO {
 
     public FazendaDTO fazenda;
+    public String cpfPatrao;
 }

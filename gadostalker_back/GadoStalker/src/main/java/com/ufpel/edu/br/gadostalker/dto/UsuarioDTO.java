@@ -30,6 +30,4 @@ public class UsuarioDTO {
     public String resposta;
 
     public Usuario.TipoUsuario tipoUsuario;
-
-    public String cpfPatrao;
 }
