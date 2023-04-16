@@ -1,4 +1,5 @@
-import mysql.connector
+import psycopg2
+import db
 from pathlib import Path
 import os
 import zipfile
@@ -14,23 +15,22 @@ sql_script.close()
 with zipfile.ZipFile(images_zip, 'r') as zip_ref:
     zip_ref.extractall("./")
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="toor",
-  database="gadostalkerdb"
+mydb = psycopg2.connect(
+    host=db._host,
+    database=db._database,
+    user=db._user,
+    password=db._password,
+    port=db._port
 )
 mycursor = mydb.cursor()
 
-mycursor.execute("Show tables;")
-myresult = mycursor.fetchall()
+#mycursor.execute("Show tables;")
+#myresult = mycursor.fetchall()
 
-mycursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+#for x in myresult:
+#    mycursor.execute("TRUNCATE {};".format(x[0]))
 
-for x in myresult:
-    mycursor.execute("TRUNCATE {};".format(x[0]))
-
-insert_imagem_query = """INSERT INTO `imagem` (`ID`, `CONTENT`, `FILEEXTENSION`, `FILENAME`) VALUES
+insert_imagem_query = """INSERT INTO imagem (ID, CONTENT, FILE_EXTENSION, FILE_NAME) VALUES
 (%s,%s,%s,%s);"""
 
 for path in Path(images_dir).iterdir():
@@ -53,8 +53,6 @@ for query in queries:
         mycursor.execute(query)
 
 mydb.commit()
-
-mycursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
 
 shutil.rmtree(images_dir)
 

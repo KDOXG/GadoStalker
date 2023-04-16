@@ -1,4 +1,4 @@
-set foreign_key_checks = 0;
+--set foreign_key_checks = 0;
 
 INSERT INTO fazendas_validas (ID, SNCR) VALUES
 (1,    '111111111111'),
@@ -27,13 +27,13 @@ INSERT INTO usuario (CPF, TIPO_USUARIO, EMAIL, NOME, PERGUNTA, RESPOSTA, SENHA, 
 
 INSERT INTO fazenda (SNCR, EMAIL, NOME, TELEFONE, proprietarioid, IS_ZAP_ZAP) VALUES
 -- fazendas do Alexandre
-('172394172893',	'fazendadovale@email.com',	'Fazenda do Vale',	'5384670840',	'12312312345', 1),
-('426854892923',	'fazendadopico@email.com',	'Fazenda do Pico',	'5399542123',	'12312312345', 1),
-('005174718456',	'fazendadoplanalto@email.com','Fazenda do Planalto',	'5199602939',	'12312312345', 1),
+('172394172893',	'fazendadovale@email.com',	'Fazenda do Vale',	'5384670840',	'12312312345', true),
+('426854892923',	'fazendadopico@email.com',	'Fazenda do Pico',	'5399542123',	'12312312345', true),
+('005174718456',	'fazendadoplanalto@email.com','Fazenda do Planalto',	'5199602939',	'12312312345', true),
 -- fazendas do Adolfo
-('322316968490',	'fazendadonorte@email.com',	'Fazenda do Norte',	'5391244357',	'79285518028', 1),
-('175354782098',	'fazendacentral@email.com',	'Fazenda Central',	'5391410792',	'79285518028', 1),
-('515154642512',	'fazendadosul@email.com',	'Fazenda do Sul',		'5391509636',	'79285518028', 1);
+('322316968490',	'fazendadonorte@email.com',	'Fazenda do Norte',	'5391244357',	'79285518028', true),
+('175354782098',	'fazendacentral@email.com',	'Fazenda Central',	'5391410792',	'79285518028', true),
+('515154642512',	'fazendadosul@email.com',	'Fazenda do Sul',		'5391509636',	'79285518028', true);
 
 -- funcionários. Estão distribuídos entre as fazendas do proprietário Alexandre.
 INSERT INTO usuario (CPF, TIPO_USUARIO, EMAIL, NOME, PERGUNTA, RESPOSTA, SENHA, TELEFONE, FAZENDA_SNCR) VALUES
@@ -96,7 +96,7 @@ INSERT INTO produto (ID, NOME, QUANTIDADE, TIPO, FAZENDA_SNCR) VALUES
 (26, 	'Vagem holandesa',	8,	8,	'515154642512');
 
 -- anúncios. A data inicial de todos é '2021-06-01' porque esse é o mês de início das transações (inseridas mais abaixo).
-INSERT INTO anuncio (id, data_inicial, data_inicial, desconto, descricao, preco, titulo, produtoid, imagemid)
+INSERT INTO anuncio (id, data_final, data_inicial, desconto, descricao, preco, titulo, produtoid, imagemid)
 VALUES  (1, NULL, '2022-06-08', 10, 'Clássico da culinária popular brasileira, o feijão tropeiro é gostoso, nutritivo, fácil de fazer e ainda serve de opção para dar uma cara nova àquele feijão que está esquecido na geladeira.', 9.90, 'Feijão Tropeiro', 1, 25),
         (2, NULL, '2021-06-01', 15, 'Feijão preto tradicional, nativo da América.', 11.50, 'Feijão Preto', 2, 10),
         (3, NULL, '2021-06-01', 5, 'Feijão vermelho tem grãos avermelhados, pequenos e arredondados. É um pouco mais suave e sutilmente mais adocicado. Seu  preparo é similar ao do feijão carioca.', 11.45, 'Feijão Vermelho', 3, 11),
@@ -180,6 +180,6 @@ INSERT INTO transacao (ID, ANUNCIOID, DATA_TRANSACAO, QUANTIDADE, PRECO) VALUES
 (26,	32,	'2022-06-01',	6,	6 * 27.99);
 
 
-set foreign_key_checks = 1;
+--set foreign_key_checks = 1;
 
 
