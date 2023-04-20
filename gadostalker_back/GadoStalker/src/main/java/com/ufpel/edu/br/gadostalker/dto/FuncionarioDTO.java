@@ -10,6 +10,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class FuncionarioDTO extends UsuarioDTO {
 
-    public FazendaDTO fazenda;
+    public String fazenda;
     public String cpfPatrao;
 }

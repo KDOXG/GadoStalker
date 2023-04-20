@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, String> {
+//    List<Funcionario> findAllBySNCR(String sncr);
+    List<Funcionario> findAllByFazendaSNCR(String sncr);
     List<Funcionario> findByFazenda_ProprietarioCpf(String cpf);
     List<Funcionario> findByFazenda_Proprietario(Proprietario proprietario);
     Optional<Funcionario> findByCpf(String cpf);

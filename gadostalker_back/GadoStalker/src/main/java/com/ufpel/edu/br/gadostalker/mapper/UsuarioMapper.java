@@ -6,19 +6,20 @@ import com.ufpel.edu.br.gadostalker.dto.UsuarioComumDTO;
 import com.ufpel.edu.br.gadostalker.model.Funcionario;
 import com.ufpel.edu.br.gadostalker.model.Proprietario;
 import com.ufpel.edu.br.gadostalker.model.UsuarioComum;
+import com.ufpel.edu.br.gadostalker.service.FazendaService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {FazendaService.class})
 public interface UsuarioMapper {
     UsuarioComumDTO toDTO(UsuarioComum usuarioComum);
     UsuarioComum toEntity(UsuarioComumDTO usuarioComumDTO);
 
-    @Mapping(target = "fazenda", ignore = true)
-    FuncionarioDTO toDTO(Funcionario funcionario);
+    @Mapping(target = "fazenda", source = "funcionario.fazenda.SNCR")
+    FuncionarioDTO toDTO(Funcionario funcionario, String cpfPatrao);
     Funcionario toEntity(FuncionarioDTO funcionarioDTO);
 
-    @Mapping(target = "fazendas", ignore = true)
     ProprietarioDTO toDTO(Proprietario proprietario);
+    @Mapping(target = "fazendas", source = "cpf")
     Proprietario toEntity(ProprietarioDTO proprietarioDTO);
 }

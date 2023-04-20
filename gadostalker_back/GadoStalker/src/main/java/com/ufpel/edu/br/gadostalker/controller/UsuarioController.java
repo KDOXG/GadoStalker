@@ -3,22 +3,18 @@ package com.ufpel.edu.br.gadostalker.controller;
 import com.ufpel.edu.br.gadostalker.dto.*;
 import com.ufpel.edu.br.gadostalker.mapper.FazendaMapper;
 import com.ufpel.edu.br.gadostalker.mapper.UsuarioMapper;
-import com.ufpel.edu.br.gadostalker.model.Fazenda;
 import com.ufpel.edu.br.gadostalker.model.Funcionario;
 import com.ufpel.edu.br.gadostalker.model.Proprietario;
 import com.ufpel.edu.br.gadostalker.model.UsuarioComum;
 import com.ufpel.edu.br.gadostalker.service.FazendaServiceImpl;
 import com.ufpel.edu.br.gadostalker.service.UsuarioServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/usuario")
@@ -52,8 +48,8 @@ public class UsuarioController {
             usuarioLogado.resposta = null;
             return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
         } else if (login.get() instanceof Funcionario) {
-            var usuarioLogado = usuarioMapper.toDTO((Funcionario)login.get());
-            usuarioLogado.cpfPatrao = ((Funcionario) login.get()).getFazenda().getProprietario().getCpf();
+            var usuarioLogado = usuarioMapper.toDTO((Funcionario)login.get(),
+                    ((Funcionario) login.get()).getFazenda().getProprietario().getCpf());
             usuarioLogado.senha = null;
             usuarioLogado.pergunta = null;
             usuarioLogado.resposta = null;

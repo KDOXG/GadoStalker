@@ -24,6 +24,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.proprietarioRepository = proprietarioRepository;
     }
 
+    @Override
+    public List<Funcionario> findFuncionarios(String sncr) {
+        return funcionarioRepository.findAllByFazendaSNCR(sncr);
+    }
+
     public Proprietario findProprietarioByCPF(String cpf) {
         return proprietarioRepository.findByCpf(cpf).orElse(null);
     }
