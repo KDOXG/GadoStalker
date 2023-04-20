@@ -48,8 +48,7 @@ public class UsuarioController {
             usuarioLogado.resposta = null;
             return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
         } else if (login.get() instanceof Funcionario) {
-            var usuarioLogado = usuarioMapper.toDTO((Funcionario)login.get(),
-                    ((Funcionario) login.get()).getFazenda().getProprietario().getCpf());
+            var usuarioLogado = usuarioMapper.toDTO((Funcionario)login.get());
             usuarioLogado.senha = null;
             usuarioLogado.pergunta = null;
             usuarioLogado.resposta = null;

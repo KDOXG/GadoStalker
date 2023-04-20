@@ -15,8 +15,9 @@ public interface UsuarioMapper {
     UsuarioComumDTO toDTO(UsuarioComum usuarioComum);
     UsuarioComum toEntity(UsuarioComumDTO usuarioComumDTO);
 
-    @Mapping(target = "fazenda", source = "funcionario.fazenda.SNCR")
-    FuncionarioDTO toDTO(Funcionario funcionario, String cpfPatrao);
+    @Mapping(target = "fazenda", source = "fazenda.SNCR")
+    @Mapping(target = "cpfPatrao", source = "fazenda.proprietario.cpf")
+    FuncionarioDTO toDTO(Funcionario funcionario);
     Funcionario toEntity(FuncionarioDTO funcionarioDTO);
 
     ProprietarioDTO toDTO(Proprietario proprietario);
