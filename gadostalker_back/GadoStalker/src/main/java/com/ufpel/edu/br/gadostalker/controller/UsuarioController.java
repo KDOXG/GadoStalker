@@ -1,6 +1,9 @@
 package com.ufpel.edu.br.gadostalker.controller;
 
-import com.ufpel.edu.br.gadostalker.dto.*;
+import com.ufpel.edu.br.gadostalker.dto.FuncionarioDTO;
+import com.ufpel.edu.br.gadostalker.dto.ProprietarioDTO;
+import com.ufpel.edu.br.gadostalker.dto.UsuarioComumDTO;
+import com.ufpel.edu.br.gadostalker.dto.UsuarioDTO;
 import com.ufpel.edu.br.gadostalker.mapper.FazendaMapper;
 import com.ufpel.edu.br.gadostalker.mapper.UsuarioMapper;
 import com.ufpel.edu.br.gadostalker.model.Funcionario;
@@ -8,15 +11,15 @@ import com.ufpel.edu.br.gadostalker.model.Proprietario;
 import com.ufpel.edu.br.gadostalker.model.UsuarioComum;
 import com.ufpel.edu.br.gadostalker.service.FazendaServiceImpl;
 import com.ufpel.edu.br.gadostalker.service.UsuarioServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuario")
 public class UsuarioController {
     private final UsuarioServiceImpl usuarioService;
@@ -24,37 +27,31 @@ public class UsuarioController {
     private final UsuarioMapper usuarioMapper;
     private final FazendaMapper fazendaMapper;
 
-    public UsuarioController(UsuarioServiceImpl usuarioService, FazendaServiceImpl fazendaService, UsuarioMapper usuarioMapper, FazendaMapper fazendaMapper) {
-        this.usuarioService = usuarioService;
-        this.fazendaService = fazendaService;
-        this.usuarioMapper = usuarioMapper;
-        this.fazendaMapper = fazendaMapper;
-    }
-
-
     @PostMapping("/login")
     public ResponseEntity<UsuarioDTO> login(@RequestBody UsuarioDTO usuarioDTO) {
 
         var login = usuarioService.login(usuarioDTO.email, usuarioDTO.senha);
 
-        if (login.isEmpty()) {
+        if (Objects.isNull(login)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        if (login.get() instanceof UsuarioComum) {
-            var usuarioLogado = usuarioMapper.toDTO((UsuarioComum)login.get());
+        if (login instanceof UsuarioComum usuarioComum) {
+            var usuarioLogado = usuarioMapper.toDTO(usuarioComum);
             usuarioLogado.senha = null;
             usuarioLogado.pergunta = null;
             usuarioLogado.resposta = null;
             return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
-        } else if (login.get() instanceof Funcionario) {
-            var usuarioLogado = usuarioMapper.toDTO((Funcionario)login.get());
+
+        } else if (login instanceof Funcionario funcionario) {
+            var usuarioLogado = usuarioMapper.toDTO(funcionario);
             usuarioLogado.senha = null;
             usuarioLogado.pergunta = null;
             usuarioLogado.resposta = null;
             return new ResponseEntity<>(usuarioLogado, HttpStatus.ACCEPTED);
-        } else if (login.get() instanceof Proprietario) {
-            var usuarioLogado = usuarioMapper.toDTO((Proprietario)login.get());
+
+        } else if (login instanceof Proprietario proprietario) {
+            var usuarioLogado = usuarioMapper.toDTO(proprietario);
             usuarioLogado.senha = null;
             usuarioLogado.pergunta = null;
             usuarioLogado.resposta = null;
