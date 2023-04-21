@@ -13,7 +13,7 @@ public interface FazendaMapper {
     FazendaDTO toDTO(Fazenda fazenda);
 
     @Mapping(target = "produtos", ignore = true)
-    @Mapping(target = "funcionarios", source = "fazendaDTO.SNCR")
-    @Mapping(target = "proprietario", source = "cpf")
+    @Mapping(target = "funcionarios", ignore = true)
+    @Mapping(target = "proprietario", ignore = true)
     Fazenda toEntity(FazendaDTO fazendaDTO, String cpf);
 }

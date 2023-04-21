@@ -13,4 +13,6 @@ public interface UsuarioService {
     //TODO: revisar os metodos abaixo
     Usuario findByCPF(String cpf, String tipo);
     Boolean newUsuario(Usuario usuario);
+    Usuario findByCPF(String cpf);
+    Boolean newUsuario(Usuario usuario, String tipo);
 }

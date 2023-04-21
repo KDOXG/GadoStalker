@@ -60,18 +60,19 @@ public class UsuarioController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/getAllFazendasByProprietarioCpf/{cpf}")
-    public List<FazendaDTO> getFazendasProprietario(@PathVariable("cpf") String cpf) {
-        return usuarioService.findByCPF(cpf)
-                .stream()
-                .map(Proprietario.class::cast)
-                .map(fazendaService::findFazendasByProprietario)
-                .flatMap(Collection::stream)
-                .map(fazendaMapper::toDTO)
-                .collect(Collectors.toList());
-    }
+    //TODO: Refazer este metodo, esta completamente errado
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    @RequestMapping("/getAllFazendasByProprietarioCpf/{cpf}")
+//    public List<FazendaDTO> getFazendasProprietario(@PathVariable("cpf") String cpf) {
+//        return usuarioService.findByCPF(cpf)
+//                .stream()
+//                .map(Proprietario.class::cast)
+//                .map(fazendaService::findFazendasByProprietario)
+//                .flatMap(Collection::stream)
+//                .map(fazendaMapper::toDTO)
+//                .collect(Collectors.toList());
+//    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
