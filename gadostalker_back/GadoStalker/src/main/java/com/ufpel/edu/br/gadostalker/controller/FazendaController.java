@@ -1,6 +1,5 @@
 package com.ufpel.edu.br.gadostalker.controller;
 
-
 import com.ufpel.edu.br.gadostalker.mapper.FazendaMapper;
 import com.ufpel.edu.br.gadostalker.mapper.UsuarioMapper;
 import com.ufpel.edu.br.gadostalker.service.FazendaServiceImpl;

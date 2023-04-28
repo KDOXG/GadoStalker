@@ -21,6 +21,6 @@ public interface UsuarioMapper {
     Funcionario toEntity(FuncionarioDTO funcionarioDTO);
 
     ProprietarioDTO toDTO(Proprietario proprietario);
-    @Mapping(target = "fazendas", source = "cpf")
+//    @Mapping(target = "fazendas", source = "cpf")
     Proprietario toEntity(ProprietarioDTO proprietarioDTO);
 }

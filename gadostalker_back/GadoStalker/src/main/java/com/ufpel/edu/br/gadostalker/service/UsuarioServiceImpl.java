@@ -1,9 +1,6 @@
 package com.ufpel.edu.br.gadostalker.service;
 
-import com.ufpel.edu.br.gadostalker.dto.FuncionarioDTO;
-import com.ufpel.edu.br.gadostalker.dto.ProprietarioDTO;
-import com.ufpel.edu.br.gadostalker.dto.UsuarioComumDTO;
-import com.ufpel.edu.br.gadostalker.dto.UsuarioDTO;
+import com.ufpel.edu.br.gadostalker.dto.*;
 import com.ufpel.edu.br.gadostalker.mapper.FazendaMapper;
 import com.ufpel.edu.br.gadostalker.mapper.UsuarioMapper;
 import com.ufpel.edu.br.gadostalker.model.Funcionario;
@@ -19,6 +16,7 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -30,19 +28,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioMapper usuarioMapper;
     private final FazendaMapper fazendaMapper;
     private final FazendaRepository fazendaRepository;
-
-    @Override
-    public List<Funcionario> findFuncionarios(String sncr) {
-        return funcionarioRepository.findAllByFazendaSNCR(sncr);
-    }
-
-    public Proprietario findProprietarioByCPF(String cpf) {
-        return proprietarioRepository.findByCpf(cpf).orElse(null);
-    }
-
-    public List<Funcionario> findAllFuncionariosByProprietarioCPF(String cpf) {
-        return funcionarioRepository.findByFazenda_ProprietarioCpf(cpf);
-    }
 
     @Override
     public UsuarioDTO login(String email, String senha) {
@@ -68,9 +53,17 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioLogado;
     }
 
+    //TODO: Refazer este metodo, esta completamente errado
     @Override
-    public Usuario findByCPF(String cpf, String tipo) {
+    public List<FazendaDTO> findAllFazendasByProprietarioCpf(String cpf) {
         return null;
+//        return usuarioService.findByCPF(cpf)
+//                .stream()
+//                .map(Proprietario.class::cast)
+//                .map(fazendaService::findFazendasByProprietario)
+//                .flatMap(Collection::stream)
+//                .map(fazendaMapper::toDTO)
+//                .collect(Collectors.toList());
     }
 
     @Override
@@ -82,6 +75,35 @@ public class UsuarioServiceImpl implements UsuarioService {
             case "uc" ->   saveUsuario(usuarioMapper.toEntity((UsuarioComumDTO) usuarioDTO));
             default -> false;
         };
+    }
+
+    @Override
+    public UsuarioDTO editUsuario(UsuarioDTO usuarioDTO, String tipo) {
+        return null;
+    }
+
+    @Override
+    public Map<Usuario.PerguntaSegurancaEnum, String> getAllPerguntas() {
+        return null;
+    }
+
+    @Override
+    public Boolean recoverPassword(UsuarioDTO usuarioRecoverPassword) {
+        return null;
+    }
+
+    public List<UsuarioDTO> findAllFuncionariosByProprietarioCPF(String cpf) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteUsuarioByCpf(String cpf) {
+        return null;
+    }
+
+    @Override
+    public UsuarioDTO editFuncionarioFazenda(UsuarioDTO usuarioDTO) {
+        return null;
     }
 
     //TODO: A princípio nenhum save do Spring deveria ser validado se houver alguma exception
@@ -104,11 +126,6 @@ public class UsuarioServiceImpl implements UsuarioService {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public Usuario findByCPF(String cpf) {
-        return usuarioRepository.findByCpf(cpf).orElse(null);
     }
 
 }
