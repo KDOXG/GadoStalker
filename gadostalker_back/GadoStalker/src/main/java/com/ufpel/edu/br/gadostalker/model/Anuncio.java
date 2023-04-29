@@ -1,62 +1,65 @@
 package com.ufpel.edu.br.gadostalker.model;
 
-import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.cassandra.core.cql.Ordering;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  *
  * @author joaolrezende
  */
-@Entity
-@Table(name = "anuncio")
+@Table
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "seqAnuncio", sequenceName = "SEQANUNCIO", allocationSize = 1)
-@NamedQuery(name = "Anuncio.getAllAnunciosQueContemProduto", query = "SELECT a FROM Anuncio a WHERE a.produto.tipo = :tipo")
 public class Anuncio implements Serializable {
+    @PrimaryKeyColumn(
+            type = PrimaryKeyType.CLUSTERED,
+            ordering = Ordering.ASCENDING,
+            ordinal = 3
+    )
+    private UUID id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seqAnuncio")
-    private Long id;
-
-    @Column
+    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordinal = 1)
     private String titulo;
     
     @Column
     private String descricao;
     
-    @Column(precision = 10, scale = 2)
+    @Column
     private BigDecimal preco;
     
     @Column
     private int desconto;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUTOID", nullable = true, referencedColumnName = "id")
-    private Produto produto;
+    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordinal = 2)
+    private Long produtoId;
+
+    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordinal = 0)
+    private Produto.TipoProdutoEnum tipoProduto;
     
     @Column
-    @Temporal(TemporalType.DATE)
     private Date dataInicial;
     
     @Column
-    @Temporal(TemporalType.DATE)
     private Date dataFinal;
     
     @Column
     private boolean isExcluido;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "IMAGEMID")
-    private Imagem imagem;
+    @Column
+    private Long imagemId;
 
     @Override
     public int hashCode() {

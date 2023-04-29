@@ -2,13 +2,12 @@ package com.ufpel.edu.br.gadostalker.model.repository;
 
 import com.ufpel.edu.br.gadostalker.model.Anuncio;
 import com.ufpel.edu.br.gadostalker.model.Proprietario;
+import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
-    @Query("select count(a) from Anuncio a " +
-            "where a.produto.fazenda.proprietario = ?1 " +
-            "and a.dataFinal is null " +
-            "and a.isExcluido = false")
-    Long countAnunciosByProprietario(Proprietario proprietario);
+import java.util.UUID;
+
+public interface AnuncioRepository extends CassandraRepository<Anuncio, UUID> {
+
 }
