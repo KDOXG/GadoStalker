@@ -10,7 +10,7 @@ import com.ufpel.edu.br.gadostalker.service.FazendaService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {FazendaService.class})
+@Mapper(componentModel = "spring", uses = {FazendaService.class, UsuarioCustomMapper.class})
 public interface UsuarioMapper {
     UsuarioComumDTO toDTO(UsuarioComum usuarioComum);
     UsuarioComum toEntity(UsuarioComumDTO usuarioComumDTO);
@@ -21,6 +21,5 @@ public interface UsuarioMapper {
     Funcionario toEntity(FuncionarioDTO funcionarioDTO);
 
     ProprietarioDTO toDTO(Proprietario proprietario);
-//    @Mapping(target = "fazendas", source = "cpf")
     Proprietario toEntity(ProprietarioDTO proprietarioDTO);
 }
