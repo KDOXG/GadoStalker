@@ -25,68 +25,58 @@ public class UsuarioController {
         return usuarioService.login(usuarioDTO.email, usuarioDTO.senha);
     }
 
-    @GetMapping
+    @GetMapping("/getAllFazendasByProprietarioCpf/{cpf}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/getAllFazendasByProprietarioCpf/{cpf}")
     public List<FazendaDTO> getFazendasProprietario(@PathVariable("cpf") String cpf) {
         return usuarioService.findAllFazendasByProprietarioCpf(cpf);
     }
 
-    @GetMapping
+    @GetMapping("cadastro/validaSncr/{sncr}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("cadastro/validaSncr/{sncr}")
     public Boolean fazendaIsValida(@PathVariable("sncr") String sncr) {
         return fazendaService.validaFazenda(sncr);
     }
 
-    @PostMapping
+    @PostMapping("/cadastro/{tipo}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/cadastro/{tipo}")
     public Boolean cadastro(UsuarioDTO usuarioDTO, @PathVariable("tipo") String tipo) {
         return usuarioService.newUsuario(usuarioDTO, tipo);
     }
 
-    @PutMapping
+    @PutMapping("/cadastro/editar/{cpf}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/cadastro/editar/{cpf}")
 
     public UsuarioDTO editarUsuario(UsuarioDTO usuarioDTO, @PathVariable("cpf") String cpf) {
         return usuarioService.editUsuario(usuarioDTO, cpf);
     }
 
-    @GetMapping
+    @GetMapping("/getAllPerguntas")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/getAllPerguntas")
     public Map<Usuario.PerguntaSegurancaEnum, String> getAllPerguntas() {
         return usuarioService.getAllPerguntas();
     }
 
-    @PutMapping
+    @PutMapping("/recuperarSenha")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/recuperarSenha")
     public Boolean recuperarSenha(UsuarioDTO usuarioRecuperaSenha) {
         return usuarioService.recoverPassword(usuarioRecuperaSenha);
     }
 
-    @GetMapping
+    @GetMapping("/getListaFuncionariosByProprietarioCpf/{cpf}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/getListaFuncionariosByProprietarioCpf/{cpf}")
     public List<UsuarioDTO> listaFuncionarios(@PathVariable("cpf") String cpf) {
         return usuarioService.findAllFuncionariosByProprietarioCPF(cpf);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/remover/{cpf}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/remover/{cpf}")
     public Boolean removerUsuario(@PathVariable("cpf") String cpf) {
         return usuarioService.deleteUsuarioByCpf(cpf);
     }
 
-    @PutMapping
+    @PutMapping("/funcionario/trocaFazenda")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping("/funcionario/trocaFazenda")
     public UsuarioDTO trocaFazendaFuncionario(UsuarioDTO usuarioDTO) {
         return usuarioService.editFuncionarioFazenda(usuarioDTO);
     }
-
 }
