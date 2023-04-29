@@ -1,11 +1,13 @@
 package com.ufpel.edu.br.gadostalker.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +27,7 @@ import java.util.Objects;
 public class Proprietario extends Usuario implements Serializable {
     
     @OneToMany(mappedBy = "proprietario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Fazenda> fazendas = new ArrayList<>();
+    private List<Fazenda> fazendas;
 
     public Proprietario addFazenda(Fazenda fazenda) {
         fazendas.add(fazenda);
