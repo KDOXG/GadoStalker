@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  *
@@ -25,18 +26,17 @@ public class Transacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seqTransacao")
     private Long id;
-    
+
     @Column
     @Temporal(TemporalType.DATE)
     private Date dataTransacao;
-    
+
     @Column(precision = 10, scale = 2)
     private BigDecimal preco;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ANUNCIOID", nullable = true, referencedColumnName = "id")
-    private Anuncio anuncio;
-    
+
+    @Column
+    private UUID anuncioId;
+
     @Column
     private int quantidade;
 
@@ -61,10 +61,10 @@ public class Transacao implements Serializable {
         final Transacao other = (Transacao) obj;
         return Objects.equals(this.id, other.id);
     }
-    
+
     @Override
     public String toString() {
         return "com.ufpel.edu.br.gadostalker.rest.entity.Transacao[ id=" + id + " ]";
     }
-    
+
 }
