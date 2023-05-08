@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -50,7 +51,7 @@ public class AnuncioController {
 
     @GetMapping("getAnuncioID/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public AnuncioDTO getAnuncioID(@PathVariable("id") Long id) {
+    public AnuncioDTO getAnuncioID(@PathVariable("id") UUID id) {
         return anuncioService.getAnuncioByID(id);
     }
 

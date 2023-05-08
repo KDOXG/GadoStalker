@@ -25,9 +25,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Anuncio implements Serializable {
     @PrimaryKeyColumn(
-            type = PrimaryKeyType.CLUSTERED,
+            type = PrimaryKeyType.PARTITIONED,
             ordering = Ordering.ASCENDING,
-            ordinal = 3
+            ordinal = 5
     )
     private UUID id;
 
@@ -36,8 +36,8 @@ public class Anuncio implements Serializable {
     
     @Column
     private String descricao;
-    
-    @Column
+
+    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordinal = 4)
     private BigDecimal preco;
     
     @Column
@@ -48,8 +48,8 @@ public class Anuncio implements Serializable {
 
     @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordinal = 0)
     private Produto.TipoProdutoEnum tipoProduto;
-    
-    @Column
+
+    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordinal = 3)
     private Date dataInicial;
     
     @Column

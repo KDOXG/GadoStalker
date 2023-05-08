@@ -59,7 +59,7 @@ public class ProdutoController {
     @GetMapping("/getAllTiposProdutos")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Map<Produto.TipoProdutoEnum, String> getAllTiposProdutos() {
-        return produtoService.findAllProdutos();
+        return produtoService.findAllTiposProdutos();
     }
 
     @GetMapping("/getAllProdutosByProprietarioCpf/{cpf}")

@@ -13,6 +13,6 @@ public interface ProdutoService {
     ProdutoDTO findProdutoById(Long id);
     ProdutoDTO editProduto(ProdutoDTO produtoDTO, Long id);
     Boolean deleteProduto(Long id);
-    Map<Produto.TipoProdutoEnum, String> findAllProdutos();
+    Map<Produto.TipoProdutoEnum, String> findAllTiposProdutos();
     List<ProdutoDTO> findAllProdutosByProprietarioCpf(String cpf);
 }

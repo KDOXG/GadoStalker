@@ -5,8 +5,11 @@ import com.ufpel.edu.br.gadostalker.model.Produto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,8 +45,9 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public Map<Produto.TipoProdutoEnum, String> findAllProdutos() {
-        return null;
+    public Map<Produto.TipoProdutoEnum, String> findAllTiposProdutos() {
+        return Arrays.stream(Produto.TipoProdutoEnum.values())
+                .collect(Collectors.toMap(Function.identity(), Produto.TipoProdutoEnum::getTipo));
     }
 
     @Override
