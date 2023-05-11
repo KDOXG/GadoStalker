@@ -27,9 +27,8 @@ Windows: ```npx ng s```
 Outros: ```ng s```
 
 # Para rodar back-end
-Instalar ```Payara Server``` ou ```GlassFish```. Plataforma ```Jakarta EE 8``` com a ```JDK 8```.
 
-Construir o projeto e rodar. Irá fazer download das dependencias.
+Construir o projeto com IntelliJ e rodar. Irá fazer download das dependencias.
 
 # Populando o banco de dados
-Na pasta ```src/main/resources/db``` existe um script SQL ```gadostalkerdb.sql``` e um script script Python ```gadostalkerdb.py``` para popular o banco de dados com as informações e as imagens. O script Python já executa o script SQL, basta apenas executar ```pip install -r requirements.txt``` para instalar as dependências e depois rodar o script ```gadostalkerdb.py``` dentro do diretório para popular o banco de dados.
+~~Na pasta ```src/main/resources/db``` existe um script SQL ```gadostalkerdb.sql``` e um script script Python ```gadostalkerdb.py``` para popular o banco de dados com as informações e as imagens. O script Python já executa o script SQL, basta apenas executar ```pip install -r requirements.txt``` para instalar as dependências e depois rodar o script ```gadostalkerdb.py``` dentro do diretório para popular o banco de dados.~~
